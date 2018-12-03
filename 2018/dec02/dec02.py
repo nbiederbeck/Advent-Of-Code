@@ -1,5 +1,6 @@
 def main():
     print(f"Day  2 (a): {run_a()}")
+    print(f"Day  2 (b): {b('./dec02/input_a')}")
 
 
 def run_a():
@@ -28,6 +29,21 @@ def a(string: str):
         else:
             chars[c] += 1
     return (2 in chars.values(), 3 in chars.values())
+
+
+def b(path: str):
+    tmp = open(path, "r")
+    f = set()
+    for a in tmp:
+        f.add(a)
+    tmp.close()
+    for a in f:
+        for c in f:
+            if a == c:
+                continue
+            for i in range(len(c)):
+                if (a[:i] + a[i + 1:] == c[:i] + c[i + 1:]):
+                    return (a[:i] + a[i + 1:]).strip()
 
 
 def test_a1():
@@ -70,6 +86,12 @@ def test_a7():
     test = "ababab"
     sol = False, True
     assert a(test) == sol
+
+
+def test_b1():
+    test = "./dec02/test_b"
+    sol = "fgij"
+    assert b(test) == sol
 
 
 if __name__ == "__main__":
