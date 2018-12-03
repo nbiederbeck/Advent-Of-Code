@@ -1,4 +1,5 @@
 years=2018
+
 all: $(years)
 	make -C $^
 
