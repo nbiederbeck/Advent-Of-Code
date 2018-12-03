@@ -32,15 +32,12 @@ def a(string: str):
 
 
 def b(path: str):
-    tmp = open(path, "r")
-    f = set()
-    for a in tmp:
-        f.add(a)
-    tmp.close()
-    for a in f:
-        for c in f:
-            if a == c:
-                continue
+    f = []
+    with open(path, "r") as tmp:
+        for a in tmp:
+            f.append(a)
+    for i, a in enumerate(f):
+        for c in f[i + 1:]:
             for i in range(len(c)):
                 if (a[:i] + a[i + 1:] == c[:i] + c[i + 1:]):
                     return (a[:i] + a[i + 1:]).strip()
