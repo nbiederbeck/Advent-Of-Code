@@ -1,22 +1,53 @@
-def main(path: str):
+def a(path: str):
     offset = 0
     with open(path, "r") as f:
         for line in f:
             offset += int(line)
     return offset
 
-def test_01_01():
+def b(path: str):
+    offset = 0
+    frequencies = {offset}
+    while True:
+        with open(path, "r") as f:
+            for line in f:
+                offset += int(line)
+                if offset in frequencies:
+                    return offset
+                frequencies.add(offset)
+
+def test_a1():
     f = "./01/test_a1"
-    assert main(f) == 3
+    assert a(f) == 3
 
-def test_01_02():
+def test_a2():
     f = "./01/test_a2"
-    assert main(f) == 0
+    assert a(f) == 0
 
-def test_01_03():
+def test_a3():
     f = "./01/test_a3"
-    assert main(f) == -6
+    assert a(f) == -6
+
+def test_b1():
+    f = "./01/test_b1"
+    assert b(f) == 2
+
+def test_b2():
+    f = "./01/test_b2"
+    assert b(f) == 0
+
+def test_b3():
+    f = "./01/test_b3"
+    assert b(f) == 10
+
+def test_b4():
+    f = "./01/test_b4"
+    assert b(f) == 5
+
+def test_b5():
+    f = "./01/test_b5"
+    assert b(f) == 14
 
 if __name__ == "__main__":
-    offset = main("./01/input_a")
-    print(f"Day  1: {offset}")
+    print(f"Day  1 (a): {a('./01/input_a')}")
+    print(f"Day  1 (b): {b('./01/input_a')}")
