@@ -1,6 +1,7 @@
 days=$(addsuffix .py, \
 	 dec01/dec01 \
 	 dec02/dec02 \
+	 dec03/dec03 \
 )
 
 all: $(days)
