@@ -1,5 +1,5 @@
 all: test
-	aoc
+	python adventofcode.py
 
 test:
 	pytest
