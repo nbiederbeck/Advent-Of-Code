@@ -1,9 +1,7 @@
-years=2018
+all: test
+	aoc
 
-all: $(years)
-	make -C $^
-
-test: $(years)
-	make -C $^ test
+test:
+	pytest
 
 .PHONY: all test
