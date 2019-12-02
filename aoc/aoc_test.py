@@ -1,5 +1,5 @@
 from aoc.dec01 import calculate_fuel, calculate_fuel_for_fuel
-from aoc.dec02 import intcode
+from aoc.dec02 import intcode, replace_input
 
 
 def test_01a():
@@ -20,3 +20,7 @@ def test_02a():
     assert intcode([2, 3, 0, 3, 99]) == 2
     assert intcode([2, 4, 4, 5, 99, 0]) == 2
     assert intcode([1, 1, 1, 4, 99, 5, 6, 0, 99]) == 30
+
+
+def test_02b():
+    assert replace_input([0, 1, 2], 10, 10) == ([0, 10, 10], 1010)
