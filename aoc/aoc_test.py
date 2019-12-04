@@ -1,6 +1,8 @@
+from numpy.testing import assert_array_equal
 from aoc.dec01 import calculate_fuel, calculate_fuel_for_fuel
 from aoc.dec02 import intcode, replace_input
 from aoc.dec03 import crossing, manhatten
+from aoc.dec04 import is_password, is_strong_password
 
 
 def test_01a():
@@ -30,16 +32,55 @@ def test_02b():
 def test_03a():
     assert manhatten(3, 3) == 6
     assert crossing("R8,U5,L5,D3", "U7,R6,D4,L4") == 6
-    assert (
-        crossing(
-            "R75,D30,R83,U83,L12,D49,R71,U7,L72", "U62,R66,U55,R34,D71,R55,D58,R83"
-        )
-        == 159
-    )
+    assert crossing("R1", "D4,R1,U10") == 1
     assert (
         crossing(
             "R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51",
             "U98,R91,D20,R16,D67,R40,U7,R15,U6,R7",
         )
         == 135
+    )
+    assert (
+        crossing(
+            "R75,D30,R83,U83,L12,D49,R71,U7,L72", "U62,R66,U55,R34,D71,R55,D58,R83"
+        )
+        == 159
+    )
+
+
+# def test_03b():
+#     assert distance("R8,U5,L5,D3", "U7,R6,D4,L4") == 30
+#     assert (
+#         distance(
+#             "R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51",
+#             "U98,R91,D20,R16,D67,R40,U7,R15,U6,R7",
+#         )
+#         == 610
+#     )
+#     assert (
+#         distance(
+#             "R75,D30,R83,U83,L12,D49,R71,U7,L72", "U62,R66,U55,R34,D71,R55,D58,R83"
+#         )
+#         == 410
+#     )
+
+
+def test_04a():
+    assert is_password([123456]) == [False]
+    assert is_password([111111]) == [True]
+    assert is_password([223450]) == [False]
+    assert is_password([123789]) == [False]
+    assert_array_equal(
+        is_password([123456, 111111, 223450, 123789]), [False, True, False, False]
+    )
+
+
+def test_04b():
+    assert is_strong_password([112233]) == [True]
+    assert is_strong_password([123444]) == [False]
+    assert is_strong_password([111122]) == [True]
+    assert is_strong_password([178416]) == [False]
+    assert is_strong_password([124444]) == [False]
+    assert_array_equal(
+        is_strong_password([112233, 123444, 111122, 178416, 124444]), [True, False, True, False, False]
     )
