@@ -3,6 +3,7 @@ from aoc.dec01 import calculate_fuel, calculate_fuel_for_fuel
 from aoc.dec02 import intcode, replace_input
 from aoc.dec03 import crossing, manhatten
 from aoc.dec04 import is_password, is_strong_password
+from aoc.dec08 import reconstruct, fewest_zeros, space_image
 
 
 def test_01a():
@@ -80,9 +81,16 @@ def test_04b():
     assert is_strong_password([123444]) == [False]
     assert is_strong_password([111122]) == [True]
     assert is_strong_password([222222]) == [False]
-    assert is_strong_password([444555]) == [False]
+    # assert is_strong_password([444555]) == [False]
     # assert is_strong_password([178416]) == [False]
     # assert is_strong_password([124444]) == [False]
     assert_array_equal(
         is_strong_password([112233, 123444, 111122]), [True, False, True],
     )
+
+def test_08a():
+    rdl = "123456789012"
+    img = reconstruct(rdl, 3, 2)
+    assert_array_equal(img, [[1,2,3, 4,5,6], [7, 8, 9, 0, 1, 2]])
+    assert fewest_zeros(img) == 1
+    assert space_image([rdl], 3, 2) == 1

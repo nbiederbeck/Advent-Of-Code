@@ -3,6 +3,7 @@ from aoc.dec01 import read_fuel, read_fuel_with_fuel
 from aoc.dec02 import read_intcode, find_word
 from aoc.dec03 import crossing
 from aoc.dec04 import number_of_passwords, number_of_strong_passwords
+from aoc.dec08 import space_image
 
 
 def print_solution(day, solution):
@@ -10,6 +11,7 @@ def print_solution(day, solution):
 
 
 def main():
+    print_solution("8a", space_image(get_riddle(8), 25, 6))
     print_solution("4b", number_of_strong_passwords(get_riddle(4)))
     print_solution("4a", number_of_passwords(get_riddle(4)))
     print_solution("3a", crossing(*get_riddle(3)))
